@@ -22,18 +22,28 @@ import HomeIcon from '@material-ui/icons/Home';
 import HelpIcon from '@material-ui/icons/Help';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import DescriptionIcon from '@material-ui/icons/Description';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
+
+
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+
+import Home from './screens/Home';
 import Agenda from './screens/Agenda';
 import Dokumentasi from './screens/Dokumentasi';
-
+import Faq from './screens/Faq';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+      // flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -49,17 +59,35 @@ const useStyles = makeStyles((theme) => ({
         position: 'fixed',
     },
 
+    link: {
+      margin: theme.spacing(0.5),
+    },
+
     heroContent: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
-      },
+      // backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(8, 0, 6),
+    },
+
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+
+    footer: {
+      //backgroundColor: theme.palette.background.paper,
+      backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+      marginTop: 'auto',
+      padding: theme.spacing(6),
+    },
   }));
 
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
+        <Link color="inherit" to={'/'}>
           Pusat Database BMKG
         </Link>{' '}
         {new Date().getFullYear()}
@@ -78,22 +106,66 @@ export default function App() {
   return (
     <Router>
       <React.Fragment>
+        <div className={classes.root}>
+
         <CssBaseline />
         
         <Hidden only="xs">
             <AppBar position="static">
+              <Container maxWidth="lg">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
-                    </IconButton>
+                    {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                      <MenuIcon />
+                    </IconButton> */}
                     <Typography variant="h6" className={classes.title}>
-                    Bimtek Pengelola Database TA 2020
+                    Bimtek Database 2020
                     </Typography>
-                    <Button component={Link} to={'/'} color="inherit">Beranda</Button>
-                    <Button component={Link} to={'/agenda'} color="inherit">Agenda</Button>
-                    <Button component={Link} to={'/faq'} color="inherit">FAQ</Button>
-                    <Button component={Link} to={'/dokumentasi'} color="inherit">Dokumentasi</Button>
+                    <Button 
+                      component={Link} 
+                      to={'/'} 
+                      color="inherit" 
+                      className={classes.link} 
+                      onClick={() => {
+                        setValue(0);
+                        setTitle('Bimtek Database');
+                      }}>
+                        Beranda
+                    </Button>
+                    <Button 
+                      component={Link}
+                      to={'/agenda'} 
+                      color="inherit" 
+                      className={classes.link} 
+                      onClick={() => {
+                        setValue(1);
+                        setTitle('Agenda Bimtek Database');
+                      }}>
+                      Agenda
+                    </Button>
+                    <Button 
+                      component={Link} 
+                      to={'/faq'} 
+                      color="inherit" 
+                      className={classes.link} 
+                      onClick={() => {
+                        setValue(2);
+                        setTitle('Tanya Jawab Seputar Bimtek Database');
+                      }}>
+                      FAQ
+                    </Button>
+                    <Button 
+                      component={Link} 
+                      to={'/dokumentasi'} 
+                      color="inherit" 
+                      className={classes.link} 
+                      onClick={() => {
+                        setValue(3);
+                        setTitle('Dokumentasi dan Resource Pendukung')
+                      }}>
+                      Dokumentasi
+                    </Button>
                 </Toolbar>
+              </Container>
             </AppBar>
         </Hidden>
 
@@ -117,27 +189,23 @@ export default function App() {
                 <Typography component="h1" variant="h4" align="center" color="textPrimary" gutterBottom>
                 {title}
                 </Typography>
-                {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                Something short and leading about the collection below—its contents, the creator, etc.
-                Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                entirely.
-                </Typography>
-                <div className={classes.heroButtons}>
-                <Grid container spacing={2} justify="center">
-                    <Grid item>
-                    <Button variant="contained" color="primary">
-                        Main call to action
-                    </Button>
-                    </Grid>
-                    <Grid item>
-                    <Button variant="outlined" color="primary">
-                        Secondary action
-                    </Button>
-                    </Grid>
-                </Grid>
+                
+                {/* <div className={classes.heroButtons}>
+                  <Grid container spacing={2} justify="center">
+                      <Grid item>
+                      <Button variant="contained" color="primary">
+                          Main call to action
+                      </Button>
+                      </Grid>
+                      <Grid item>
+                      <Button variant="outlined" color="primary">
+                          Secondary action
+                      </Button>
+                      </Grid>
+                  </Grid>
                 </div> */}
             </Container>
-            </div>
+            
         
         {/* <nav>
           <ul>
@@ -169,27 +237,31 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
+
+        </div>
         
         </main>
 
         <Hidden only="xs">
-        {/* Footer */}
-        <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-            Bimtek Pengelola Database TA 2020
-            </Typography>
-            {/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
-            </Typography> */}
-            <Copyright />
-        </footer>
-        {/* End footer */}
+          {/* Footer */}
+          <footer className={classes.footer}>
+              <Typography variant="h6" align="center" gutterBottom>
+              Bimtek Pengelola Database TA 2020
+              </Typography>
+              {/* <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+              Something here to give the footer a purpose!
+              </Typography> */}
+              <Copyright />
+          </footer>
+          {/* End footer */}
         </Hidden>
 
         <Hidden smUp>
+          <Box mt={4} />
             <BottomNavigation
                 value={value}
                 onChange={(event, newValue) => {
+                    //console.log(newValue);
                     setValue(newValue);
                 }}
                 showLabels
@@ -200,14 +272,20 @@ export default function App() {
                     to={'/'} 
                     label="Beranda" 
                     icon={<HomeIcon />} 
-                    onClick={() => setTitleNavMobile('Bimtek Database') }
+                    onClick={() => {
+                      setTitleNavMobile('Bimtek Database');
+                      setTitle('Bimtek Database');
+                    }}
                 />
                 <BottomNavigationAction 
                     component={Link} 
                     to={'/agenda'} 
                     label="Agenda" 
                     icon={<EventNoteIcon />} 
-                    onClick={() => setTitleNavMobile('Agenda Bimtek Database') }
+                    onClick={() => {
+                      setTitleNavMobile('Agenda Bimtek Database');
+                      setTitle('Agenda Bimtek Database');
+                    }}
                 />
                 <BottomNavigationAction 
                     component={Link} 
@@ -223,22 +301,18 @@ export default function App() {
                     component={Link} 
                     to={'/dokumentasi'} 
                     label="Dokumentasi" 
-                    icon={<DescriptionIcon />} 
+                    icon={<PhotoLibraryIcon />} 
                     onClick={() => {
                     setTitleNavMobile('Dokumentasi Bimtek Database');
                     setTitle('Dokumentasi')
                     } }/>
             </BottomNavigation>
         </Hidden>
+        </div>
+
       </React.Fragment>
     </Router>
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
 
-function Faq() {
-  return <h2>Faq</h2>;
-}

@@ -55,7 +55,12 @@ export default function Dokumentasi() {
     return (
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={4}>
+
+          <Grid container justify="center">
+            <img src={'https://images.unsplash.com/photo-1565011761573-09d9db5ccd9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80'} width="100%" />
+          </Grid>
+
+          {/* <Grid container spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
@@ -83,7 +88,7 @@ export default function Dokumentasi() {
                 </Card>
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
         </Container>
     );
 }

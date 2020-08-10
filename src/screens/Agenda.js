@@ -7,12 +7,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   table: {
     // minWidth: 650,
   },
-});
+  container: {
+    paddingTop: theme.spacing(4),
+  }
+}));
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -62,6 +67,7 @@ export default function Agenda() {
     const classes = useStyles();
 
     return (
+      <Container className={classes.container} maxWidth='lg'>
       <TableContainer component={Paper}>
         <Table stickyHeader className={classes.table} aria-label="simple table">
           <TableHead>
@@ -129,5 +135,6 @@ export default function Agenda() {
           </TableBody>
         </Table>
       </TableContainer>
+      </Container>
     );
   }
