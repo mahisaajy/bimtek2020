@@ -10,13 +10,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import {
-  Link
-} from "react-router-dom";
+import Link from '@material-ui/core/Link'
+
+import { Link as RouterLink } from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    // textDecoration: 'none'
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -59,11 +61,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomCard({title, description, imagemedia}) {
+function CustomCard({title, description, imagemedia, linkto}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} >
+    <Link component={RouterLink} to={linkto} underline='none' >
+    <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -89,6 +92,7 @@ function CustomCard({title, description, imagemedia}) {
         </Button> */}
       </CardActions>
     </Card>
+    </Link>
   )
 }
 
@@ -108,13 +112,13 @@ export default function Home() {
       </Typography> */}
       <Grid container spacing={3}>
         <Grid item xs={12} sm={4} md={4}>
-          <CustomCard title={'Agenda'} description={'Jadwal lengkap kegiatan Bimtek tahun 2020 ada di sini'} imagemedia={'agenda2.jpg'} />
+          <CustomCard title={'Agenda'} description={'Jadwal lengkap kegiatan Bimtek tahun 2020 ada di sini'} imagemedia={'agenda2.jpg'} linkto={'/agenda'} />
         </Grid>
         <Grid item xs={12} sm={4} md={4}>
-          <CustomCard title={'Faq'} description={'Tanya jawab seputar Bimtek'} imagemedia={'asking.jpg'} />
+          <CustomCard title={'Faq'} description={'Tanya jawab seputar Bimtek'} imagemedia={'asking.jpg'} linkto={'/faq'} />
         </Grid>
         <Grid item xs={12} sm={4} md={4}>
-          <CustomCard title={'Dokumentasi'} description={'Materi pendukung beserta foto-foto dokumentasi ada di sini'} imagemedia={'documentation.jpg'} />
+          <CustomCard title={'Dokumentasi'} description={'Materi pendukung beserta foto-foto dokumentasi ada di sini'} imagemedia={'documentation.jpg'} linkto={'/dokumentasi'} />
         </Grid>
       </Grid>
     </Container>
