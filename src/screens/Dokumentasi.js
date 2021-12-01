@@ -154,7 +154,7 @@ export default function Dokumentasi() {
               </Grid>
 
               <Grid item xs={12} sm={4} md={4}>
-                <CustomCard title={'Implementasi Metode QC Data Cuaca dan Iklim'} description={'Feizal Amri Permana - Kepala Sub Bidang Manajemen Database MKG'} imagemedia={'coding.jpg'} linkto={'https://drive.google.com/file/d/19-3RJZNd8ep-aP2qWorUPno6URBmQZKC/view?usp=sharing'} />
+                <CustomCard title={'Implementasi Metode QC Data Cuaca dan Iklim'} description={'Feizal Amri Permana - Staff Sub Bidang Manajemen Database MKG'} imagemedia={'coding.jpg'} linkto={'https://drive.google.com/file/d/19-3RJZNd8ep-aP2qWorUPno6URBmQZKC/view?usp=sharing'} />
               </Grid>
 
               
